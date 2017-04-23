@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>InnoShop</title>
@@ -65,10 +65,31 @@
 <div class="page-header">
     <h1>Confirmation</h1>
 </div>
+<div>
+    <h2>You bought these products:</h2>
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
+
+<div th:if="${session.cart != null}">
+
+    <div th:each="product : ${session.cart.products}">
+
+        <div th:switch="${product}">
+            <p th:case="1"><img src="/img/greenapple.jpg"/> Green apple - 1 pcs</p>
+            <p th:case="2"><img src="/img/redapple.jpg"/> Red apple - 1 pcs</p>
+            <p th:case="3"><img src="/img/banana.png"/> Banana - 1 pcs</p>
+            <p th:case="4"><img src="/img/orange.png"/> Orange - 1 pcs</p>
+        </div>
+
+    </div>
+
+</div>
+<div>
+    <h3>You will be notified about delivery</h3>
+</div>
 
 </body>
 </html>
