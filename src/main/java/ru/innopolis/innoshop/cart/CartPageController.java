@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/cart")
 public class CartPageController {
 
-    @RequestMapping("/")
+    @RequestMapping("")
     public String cart() {
         return "cart";
     }

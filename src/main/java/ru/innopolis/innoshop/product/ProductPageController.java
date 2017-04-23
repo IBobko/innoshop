@@ -1,17 +1,17 @@
 package ru.innopolis.innoshop.product;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * Created by Vyacheslav on 23.04.2017.
  */
 @Controller
-@RequestMapping("")
+@RequestMapping("/product")
 public class ProductPageController {
-
-    @RequestMapping("/product_{d}.html")
-    public String product() {
-        return "product_1";
+    @RequestMapping("/{id}")
+    public String product(@PathVariable final Integer id) {
+        return "product_" + id;
     }
 }
