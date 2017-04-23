@@ -12,7 +12,7 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body>
+<div>
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -72,9 +72,22 @@
 <script src="../js/bootstrap.min.js"></script>
 
 
-<tr th:each="product : ${cart.products}">
-    <td >${product}</td>
-</tr>
+<div th:each="product : ${session.cart.products}">
+
+    <div th:switch="${product}">
+        <p th:case="1"><img src="/img/banana.png"/></p>
+        <p th:case="2">User is a manager</p>
+        <p th:case="3">User is some other thing</p>
+        <p th:case="4">User is some other thing</p>
+    </div>
+
+
+    <div th:text="${product}"></div>
+</div>
+
+<div th:text="${session.cart.products}"></div>
+
+    <button class="btn btn-default" type="submit" onclick="document.location='/order';">Order</button>
 
 </body>
 </html>
