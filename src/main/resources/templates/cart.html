@@ -71,8 +71,9 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
 
+<div th:if="${${session.cart == null}">
 
-<div th:each="product : ${session.cart.products}">
+    <div th:each="product : ${session.cart.products}" th:unless="${session.cart == null}">
 
     <div th:switch="${product}">
         <p th:case="1"><img src="/img/greenapple.jpg"/> Green apple - 1 pcs</p>
@@ -81,11 +82,10 @@
         <p th:case="4"><img src="/img/orange.png"/> Orange - 1 pcs</p>
     </div>
 
+    </div>
 
-    <div th:text="${product}"></div>
 </div>
 
-<div th:text="${session.cart.products}"></div>
 
     <button class="btn btn-default" type="submit" onclick="document.location='/order';">Order</button>
 
