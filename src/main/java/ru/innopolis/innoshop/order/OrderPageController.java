@@ -1,6 +1,7 @@
 package ru.innopolis.innoshop.order;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,17 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/order")
 public class OrderPageController {
     @RequestMapping("")
-    String index() {
+    public String index() {
         return "order";
     }
 
     @RequestMapping("/confirmation")
-    String confirmation(HttpServletRequest servletRequest) {
+    public String confirmation(final HttpServletRequest servletRequest, final Model model) {
 
-        servletRequest.getAttribute("");
-        servletRequest.getAttribute("");
-        servletRequest.getAttribute("");
+        final String name = (String)servletRequest.getAttribute("Name");
+        final String address = (String)servletRequest.getAttribute("Address");
+        final String delivery = (String)servletRequest.getAttribute("optionsRadios");
 
+        model.addAttribute("name",name);
+        model.addAttribute("address",address);
+        model.addAttribute("delivery",delivery);
 
         return "confirmation";
     }
