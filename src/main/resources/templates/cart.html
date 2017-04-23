@@ -75,10 +75,10 @@
 <div th:each="product : ${session.cart.products}">
 
     <div th:switch="${product}">
-        <p th:case="1"><img src="/img/banana.png"/></p>
-        <p th:case="2">User is a manager</p>
-        <p th:case="3">User is some other thing</p>
-        <p th:case="4">User is some other thing</p>
+        <p th:case="1"><img src="/img/greenapple.jpg"/> Green apple - 1 pcs</p>
+        <p th:case="2"><img src="/img/redapple.jpg"/> Red apple - 1 pcs</p>
+        <p th:case="3"><img src="/img/banana.png"/> Banana - 1 pcs</p>
+        <p th:case="4"><img src="/img/orange.png"/> Orange - 1 pcs</p>
     </div>
 
 
