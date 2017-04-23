@@ -1,11 +1,7 @@
 package ru.innopolis.innoshop.home;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ru.innopolis.innoshop.cart.AddToCartEvent;
 
 /**
  * @author Igor Bobko <limit-speed@yandex.ru>.
@@ -13,10 +9,6 @@ import ru.innopolis.innoshop.cart.AddToCartEvent;
 @RequestMapping("/")
 @Controller
 public class HomePageController {
-
-    @Autowired
-    private ApplicationEventPublisher publisher;
-
     /**
      * Main page of our site.
      *
@@ -24,17 +16,6 @@ public class HomePageController {
      */
     @RequestMapping("")
     public String index() {
-
-        AddToCartEvent event = new AddToCartEvent(this);
-
-        publisher.publishEvent(event);
-
         return "index";
-
-    }
-
-    @EventListener
-    public void test(AddToCartEvent event) {
-        System.out.println("WON'T WORK :-(");  // FIXME
     }
 }

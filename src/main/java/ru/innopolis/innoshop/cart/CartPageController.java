@@ -1,6 +1,9 @@
 package ru.innopolis.innoshop.cart;
 
 import org.apache.catalina.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,20 +17,31 @@ import javax.servlet.http.HttpSession;
 @RequestMapping("/cart")
 public class CartPageController {
 
+    @Autowired
+    private ApplicationEventPublisher publisher;
+
+
     @RequestMapping("")
     public String cart() {
         return "cart";
     }
 
     @RequestMapping("/add")
-    @ResponseBody
     public String add(@RequestParam Integer product_id, HttpSession session) {
-        CartModel cartModel = (CartModel)session.getAttribute("cart");
+        AddToCartEvent event = new AddToCartEvent(this);
+        event.setSession(session);
+        event.setProductID(product_id);
+        publisher.publishEvent(event);
+        return "redirect:/product/" + product_id;
+    }
+
+    @EventListener
+    public void listener(AddToCartEvent event) {
+        CartModel cartModel = (CartModel)event.getSession().getAttribute("cart");
         if (cartModel == null) {
             cartModel = new CartModel();
-            session.setAttribute("cart",cartModel);
+            event.getSession().setAttribute("cart",cartModel);
         }
-        cartModel.products.add(product_id);
-        return "OK";
+        cartModel.products.add(event.getProductID());
     }
 }
