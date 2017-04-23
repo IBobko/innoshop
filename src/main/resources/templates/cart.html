@@ -23,14 +23,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href=".\index.html">InnoShop</a>
+            <a class="navbar-brand" href="/">InnoShop</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href=".\cart.html">Cart <span class="sr-only">(current)</span></a></li>
-                <li><a href=".\order.html">Order</a></li>
+                <li><a href="/cart">Cart <span class="sr-only">(current)</span></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -71,9 +70,9 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../js/bootstrap.min.js"></script>
 
-<div th:if="${${session.cart == null}">
+<div th:if="${session.cart != null}">
 
-    <div th:each="product : ${session.cart.products}" th:unless="${session.cart == null}">
+    <div th:each="product : ${session.cart.products}">
 
     <div th:switch="${product}">
         <p th:case="1"><img src="/img/greenapple.jpg"/> Green apple - 1 pcs</p>

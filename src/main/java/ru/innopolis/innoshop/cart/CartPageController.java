@@ -11,28 +11,23 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
+@RequestMapping("/cart")
 public class CartPageController {
 
-    @RequestMapping("/cart.html")
-    public String cart(Model model) {
-
-
-
+    @RequestMapping("/")
+    public String cart() {
         return "cart";
     }
 
     @RequestMapping("/add")
     @ResponseBody
     public String add(@RequestParam Integer product_id, HttpSession session) {
-        System.out.println(product_id);
         CartModel cartModel = (CartModel)session.getAttribute("cart");
-
         if (cartModel == null) {
             cartModel = new CartModel();
             session.setAttribute("cart",cartModel);
         }
         cartModel.products.add(product_id);
-
         return "OK";
     }
 }
