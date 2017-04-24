@@ -26,15 +26,6 @@ public class CartPageController {
         return "cart";
     }
 
-    @RequestMapping("/add")
-    public String add(@RequestParam Integer product_id, HttpSession session) {
-        AddToCartEvent event = new AddToCartEvent(this);
-        event.setSession(session);
-        event.setProductID(product_id);
-        publisher.publishEvent(event);
-        return "redirect:/product/" + product_id;
-    }
-
     @EventListener
     public void listener(AddToCartEvent event) {
         CartModel cartModel = (CartModel)event.getSession().getAttribute("cart");
